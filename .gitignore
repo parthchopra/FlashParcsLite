@@ -1,0 +1,10 @@
+
+.vs/
+
+FlashParcsLite/bin/
+
+FlashParcsLite.Data/bin/
+
+FlashParcsLite/ClientApp/node_modules/
+
+FlashParcsLite/ClientApp/dist/
