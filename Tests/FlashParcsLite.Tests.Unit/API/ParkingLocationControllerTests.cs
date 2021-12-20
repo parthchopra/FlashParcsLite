@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using FlashParcsLite.API.Controllers;
 using FlashParcsLite.API.Hubs;
@@ -28,11 +27,13 @@ namespace FlashParcsLite.Tests.Unit.API
         {
             _mockLogger = new Mock<ILogger<ParkingLocationController>>();
             _mockParkingLocationRepo = new Mock<IParkingLocationRepository>();
+
+
             _mockClientProxy = new Mock<IClientProxy>();
             _mockClients = new Mock<IHubClients>();
-            _mockClients.SetupGet(r => r.All).Returns(_mockClientProxy.Object);
+            _mockClients.Setup(r => r.All).Returns(_mockClientProxy.Object);
             _mockParkingHub = new Mock<IHubContext<ParkingHub>>();
-            _mockParkingHub.SetupGet(r => r.Clients).Returns(_mockClients.Object);
+            _mockParkingHub.Setup(r => r.Clients).Returns(_mockClients.Object);
         }
 
         [Test]
@@ -78,6 +79,7 @@ namespace FlashParcsLite.Tests.Unit.API
 
             _mockParkingLocationRepo.Verify(v => v.AddVehicle(vehicleUpdateDto.ParkingLocationId), Times.Once);
 
+            _mockClients.Verify(c => c.All);
         }
     }
 }

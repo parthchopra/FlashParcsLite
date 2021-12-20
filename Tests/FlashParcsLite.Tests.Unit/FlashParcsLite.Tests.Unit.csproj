@@ -18,26 +18,16 @@
     <None Remove="Moq" />
     <None Remove="Shouldly" />
     <None Remove="API\" />
-    <None Remove="UI\" />
     <None Remove="Repository\" />
-    <None Remove="Data\Repositories\" />
-    <None Remove="UI\Services\" />
     <None Remove="SignalR.UnitTestingSupport.NUnit" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FlashParcsLite.API\FlashParcsLite.API.csproj" />
     <ProjectReference Include="..\..\FlashParcsLite.Data\FlashParcsLite.Data.csproj" />
+    <ProjectReference Include="..\..\FlashParcsLite.UI\FlashParcsLite.UI.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\">
-    </Folder>
-    <Folder Include="UI\">
-    </Folder>
-    <Folder Include="Data\">
-    </Folder>
-    <Folder Include="Data\Repositories\">
-    </Folder>
-    <Folder Include="UI\Services\">
     </Folder>
   </ItemGroup>
 </Project>
