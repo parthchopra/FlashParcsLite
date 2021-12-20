@@ -11,18 +11,18 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   public locations: ParkingLocation[];
-  public vehicleCount: number;
+  //public vehicleCount: number;
   public selectedLocation: ParkingLocation;
   private connection: signalR.HubConnection;
 
   constructor(http: HttpClient) {
 
     var baseUrl = environment.BASE_URL;
-    this.connection = new signalR.HubConnectionBuilder().withUrl("/parkingHub").build();
-    this.connection.start().then(function () {
-    }).catch(function (err) {
-      return console.error(err.toString());
-    });
+    this.connection = new signalR.HubConnectionBuilder()
+      .withUrl('/parkingHub')
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+    this.start();
 
     http.get<ParkingLocation[]>(baseUrl + '/location').subscribe(result => {
       this.locations = result;
@@ -41,15 +41,37 @@ export class AppComponent {
       this.selectedLocation
     ];
 
-    this.vehicleCount = this.selectedLocation.vehicleCount;
+    //this.vehicleCount = this.selectedLocation.vehicleCount;
   }
 
-  private receiveLocationInfo = (pl:any) => {
-    this.vehicleCount = pl.vehicleCount;
+  private start = async() => {
+    try {
+      await this.connection.start();
+      console.log("connected");
+    } catch (err) {
+      console.log(err);
+      setTimeout(() => this.start(), 5000);
+    }
+  };
+
+  private receiveLocationInfo = (pl: any) => {
+    this.selectedLocation = pl;
   }
 
   public onLocationChange = () => {
     this.connection.invoke("GetLocationAsync", this.selectedLocation.id).catch(function (err) {
+      return console.error(err.toString());
+    })
+  }
+
+  public increaseVehicleCount = () => {
+    this.connection.invoke("IncreaseVehicleCount", this.selectedLocation.id).catch(function (err) {
+      return console.error(err.toString());
+    })
+  }
+
+  public decreaseVehicleCount = () => {
+    this.connection.invoke("DecreaseVehicleCount", this.selectedLocation.id).catch(function (err) {
       return console.error(err.toString());
     })
   }

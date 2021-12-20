@@ -12,11 +12,11 @@
                 <label>Vehicle Count</label>
             </div>
             <div class="row">
-                <label>{{vehicleCount}}</label>
+                <label>{{selectedLocation.vehicleCount}}</label>
             </div>
             <div class="row">
-                <button type="button" id="add-vehicle" class="col-5 btn btn-success">AddVehicle</button>
-                <button type="button" id="remove-vehicle" class="col-5 btn btn-danger">RemoveVehicle</button>
+                <button type="button" id="add-vehicle" class="col-5 btn btn-success" (click)="increaseVehicleCount">AddVehicle</button>
+                <button type="button" id="remove-vehicle" class="col-5 btn btn-danger"(click)="decreaseVehicleCount">RemoveVehicle</button>
             </div>
         </div>
     </div>

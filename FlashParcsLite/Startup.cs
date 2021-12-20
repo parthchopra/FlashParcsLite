@@ -33,7 +33,7 @@ namespace FlashParcsLite
             services.AddDbContext<ParkingContext>(options => options.UseSqlite($"Data Source = {db}"));
 
             services.AddScoped<ILocationRepository, LocationRepository>();
-            services.AddSignalR();
+            
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -44,11 +44,14 @@ namespace FlashParcsLite
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
-                .AllowAnyOrigin()
                 .AllowAnyMethod()
-                .AllowAnyHeader());
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .WithOrigins("http://localhost:5000")
+                //.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                );
             });
-            //services.AddCors();
+            services.AddSignalR();
 
         }
 
