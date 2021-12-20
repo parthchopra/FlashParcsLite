@@ -8,3 +8,9 @@ FlashParcsLite.Data/bin/
 FlashParcsLite/ClientApp/node_modules/
 
 FlashParcsLite/ClientApp/dist/
+
+FlashParcsLite.API/bin/
+
+Tests/FlashParcsLite.Tests.Unit/bin/
+
+Tests/FlashParcsLite.Tests.Integration/bin/
