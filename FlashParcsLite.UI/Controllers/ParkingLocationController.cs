@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FlashParcsLite.UI.Models;
-using System.Net.Http;
-using System.Text.Json;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using FlashParcsLite.UI.Services;
 
 namespace FlashParcsLite.UI.Controllers
 {
@@ -16,24 +11,20 @@ namespace FlashParcsLite.UI.Controllers
     {
 
         private readonly ILogger<ParkingLocationController> _logger;
-        private readonly HttpClient _httpClient;
-        public ParkingLocationController(ILogger<ParkingLocationController> logger, IHttpClientFactory httpClientFactory)
+        private readonly IParkingLocationService _parkingLocationService;
+
+        public ParkingLocationController(ILogger<ParkingLocationController> logger, IParkingLocationService parkingLocationService)
         {
             _logger = logger;
-            _httpClient = httpClientFactory.CreateClient("parkingLocation");
+            _parkingLocationService = parkingLocationService;
         }
 
         public async Task<IActionResult> IndexAsync()
         {
             _logger.LogInformation("request to return parking locations in UI");
-            var response = await _httpClient.GetAsync("/api/ParkingLocation");
-            response.EnsureSuccessStatusCode();
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            var parkingLocations = JsonSerializer.Deserialize<IEnumerable<ParkingLocation>>(jsonResponse, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true
-            });
+
+            var parkingLocations = await _parkingLocationService.GetAllParkingLocations();
+
             return View(parkingLocations);
         }
 

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FlashParcsLite.API.Controllers;
@@ -13,7 +13,7 @@ using Moq;
 using NUnit.Framework;
 using Shouldly;
 
-namespace FlashParcsLite.Tests.Unit
+namespace FlashParcsLite.Tests.Unit.API
 {
     public class ParkingLocationControllerTests
     {
