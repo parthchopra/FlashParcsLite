@@ -10,20 +10,20 @@ namespace FlashParcsLite.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Locations.Any())
+            if (context.ParkingLocations.Any())
             {
                 return;
             }
 
-            var locations = new Location[]
+            var locations = new ParkingLocation[]
             {
-                new Location { Name = "Menlo Park", Capacity = 10},
-                new Location { Name = "Mountain View", Capacity = 10 },
-                new Location { Name = "Cupertino", Capacity = 5 },
-                new Location { Name = "Redmond", Capacity = 10 }
+                new ParkingLocation { Name = "Menlo Park", Capacity = 10},
+                new ParkingLocation { Name = "Mountain View", Capacity = 10 },
+                new ParkingLocation { Name = "Cupertino", Capacity = 5 },
+                new ParkingLocation { Name = "Redmond", Capacity = 10 }
             };
 
-            context.Locations.AddRange(locations);
+            context.ParkingLocations.AddRange(locations);
             context.SaveChanges();
         }
     }

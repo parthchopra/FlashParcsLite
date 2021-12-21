@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashParcsLite", "FlashParcsLite\FlashParcsLite.csproj", "{2008BA17-DBE8-4E88-9851-08B5D1AFF96C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashParcsLite.Data", "FlashParcsLite.Data\FlashParcsLite.Data.csproj", "{ED696769-7BDF-4EB8-989D-C013A193A1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashParcsLite.API", "FlashParcsLite.API\FlashParcsLite.API.csproj", "{3446E7B6-E5F7-4831-BB48-2DD18673E529}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A376DE2B-CBE7-4B75-A157-C70C98DA9683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashParcsLite.Tests.Unit", "Tests\FlashParcsLite.Tests.Unit\FlashParcsLite.Tests.Unit.csproj", "{D84ABA91-2729-444C-9BCA-3C9EA9D51F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashParcsLite.Tests.Integration", "Tests\FlashParcsLite.Tests.Integration\FlashParcsLite.Tests.Integration.csproj", "{EE933639-421E-4B84-B576-08A45B3B26CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlashParcsLite.UI", "FlashParcsLite.UI\FlashParcsLite.UI.csproj", "{EB29A2E9-254B-4080-A311-9C0E15838A34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +21,35 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2008BA17-DBE8-4E88-9851-08B5D1AFF96C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2008BA17-DBE8-4E88-9851-08B5D1AFF96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2008BA17-DBE8-4E88-9851-08B5D1AFF96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2008BA17-DBE8-4E88-9851-08B5D1AFF96C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED696769-7BDF-4EB8-989D-C013A193A1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED696769-7BDF-4EB8-989D-C013A193A1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED696769-7BDF-4EB8-989D-C013A193A1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED696769-7BDF-4EB8-989D-C013A193A1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3446E7B6-E5F7-4831-BB48-2DD18673E529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3446E7B6-E5F7-4831-BB48-2DD18673E529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3446E7B6-E5F7-4831-BB48-2DD18673E529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3446E7B6-E5F7-4831-BB48-2DD18673E529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D84ABA91-2729-444C-9BCA-3C9EA9D51F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D84ABA91-2729-444C-9BCA-3C9EA9D51F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D84ABA91-2729-444C-9BCA-3C9EA9D51F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D84ABA91-2729-444C-9BCA-3C9EA9D51F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE933639-421E-4B84-B576-08A45B3B26CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE933639-421E-4B84-B576-08A45B3B26CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE933639-421E-4B84-B576-08A45B3B26CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE933639-421E-4B84-B576-08A45B3B26CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB29A2E9-254B-4080-A311-9C0E15838A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB29A2E9-254B-4080-A311-9C0E15838A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB29A2E9-254B-4080-A311-9C0E15838A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB29A2E9-254B-4080-A311-9C0E15838A34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {320E88CB-B9CE-4484-B205-2F134F08FD50}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D84ABA91-2729-444C-9BCA-3C9EA9D51F5D} = {A376DE2B-CBE7-4B75-A157-C70C98DA9683}
+		{EE933639-421E-4B84-B576-08A45B3B26CF} = {A376DE2B-CBE7-4B75-A157-C70C98DA9683}
 	EndGlobalSection
 EndGlobal

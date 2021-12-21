@@ -6,15 +6,13 @@ namespace FlashParcsLite.Data
 {
     public class ParkingContext : DbContext
     {
-        //public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<Location> Locations { get; set; }
+        public DbSet<ParkingLocation> ParkingLocations { get; set; }
 
         public ParkingContext(DbContextOptions<ParkingContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Vehicle>().ToTable(nameof(Vehicle));
-            modelBuilder.Entity<Location>().ToTable(nameof(Location));
+            modelBuilder.Entity<ParkingLocation>().ToTable(nameof(ParkingLocation));
         }
     }
 }

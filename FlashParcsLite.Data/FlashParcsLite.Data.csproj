@@ -11,10 +11,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\">
-      <DependentUpon>Models</DependentUpon>
     </Folder>
     <Folder Include="Repositories\">
-      <DependentUpon>Repositories</DependentUpon>
     </Folder>
   </ItemGroup>
   <ItemGroup>

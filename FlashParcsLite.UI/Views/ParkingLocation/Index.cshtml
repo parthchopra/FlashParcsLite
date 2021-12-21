@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ParkingLocation> 
+@{
+    ViewData["Title"] = "Parking Locations";
+    var initialLocationVehicleCount = Model.First().VehicleCount;
+}
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col">
+            @Html.LabelFor(m => m, labelText: "Locations", htmlAttributes: new { @class = "row" })
+            <select id="locations">
+                @foreach (var location in Model)
+                {
+                <option value="@(location.Id)">@location.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+            <div class="row">
+                <label>Vehicle Count</label>
+            </div>
+            <div class="row">
+                <label id="vehicle-count">@initialLocationVehicleCount</label>
+            </div>
+            <div class="row">
+                <button type="button" id="add-vehicle" class="col-5 btn btn-success">AddVehicle</button>
+                <button type="button" id="remove-vehicle" class="col-5 btn btn-danger">RemoveVehicle</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+</div>
