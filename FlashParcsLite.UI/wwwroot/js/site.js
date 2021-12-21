@@ -10,7 +10,11 @@
 
     async function start() {
         try {
-            await connection.start();
+            if (connection.state === signalR.HubConnectionState.Disconnected) {
+                await connection.start();
+            }            
+            getSelectedParkingLocation();
+            checkButtonStatus();
             console.log("SignalR Connected.");
         } catch (err) {
             console.log(err);
@@ -24,23 +28,43 @@
 
     start();
 
-    connection.on("ReceiveLocationInfo", function (pl) {
-        parkingLocation = pl;
-        vehicleCount.text(parkingLocation.vehicleCount);
-    })
+    function checkButtonStatus() {
 
-    $("#locations").on("change", function (event) {
+        if (parkingLocation.vehicleCount == 0) {
+            removeVehicleButton.prop("disabled", true);
+            addVehicleButton.prop("disabled", false);
+        }
+        else if (parkingLocation.vehicleCount == parkingLocation.capacity) {
+            removeVehicleButton.prop("disabled", false);
+            addVehicleButton.prop("disabled", true);
+        }
+        else {
+            addVehicleButton.prop("disabled", false);
+            removeVehicleButton.prop("disabled", false);
+        }
+    }
+
+    function getSelectedParkingLocation() {
         var selectedOptionValue = $("#locations option:selected").val();
-
         var jqxhr = $.get(`${apiUrl}/${selectedOptionValue}`)
             .done(function (data) {
-                var location = data;
-                console.log(location);
-                vehicleCount.text(location.vehicleCount);
+                parkingLocation = data;
+                vehicleCount.text(parkingLocation.vehicleCount);
             })
             .fail(function () {
                 alert("error");
             });
+    }
+
+    connection.on("ReceiveLocationInfo", function (pl) {
+        parkingLocation = pl;
+        vehicleCount.text(parkingLocation.vehicleCount);
+        checkButtonStatus();
+    })
+
+    $("#locations").on("change", function (event) {
+        getSelectedParkingLocation();
+        checkButtonStatus();
     });
 
     addVehicleButton.on("click", function (event) {
@@ -51,6 +75,10 @@
             contentType: 'application/json',
             success: function () {
                 console.log("increased vehicle count");
+                checkButtonStatus();
+            },
+            fail: function () {
+                alert("unable to add vehicle to the location");
             },
             dataType: 'json'
         });             
@@ -64,6 +92,10 @@
             contentType: 'application/json',
             success: function () {
                 console.log("decrease vehicle count");
+                checkButtonStatus();
+            },
+            fail: function () {
+                alert("unable to remove vehicle to the location");
             },
             dataType: 'json'
         });           

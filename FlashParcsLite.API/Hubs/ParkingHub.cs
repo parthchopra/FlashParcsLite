@@ -18,18 +18,6 @@ namespace FlashParcsLite.API.Hubs
         {
             var location = repo.GetParkingLocation(locationId);
             await Clients.All.SendAsync("ReceiveLocationInfo", location);
-        }
-
-        public async Task IncreaseVehicleCount(int locationId)
-        {
-            var location = repo.AddVehicle(locationId);
-            await Clients.All.SendAsync("ReceiveLocationInfo", location);
-        }
-
-        public async Task DecreaseVehicleCount(int locationId)
-        {
-            var location = repo.RemoveVehicle(locationId);
-            await Clients.All.SendAsync("ReceiveLocationInfo", location);
-        }
+        }       
     }
 }
